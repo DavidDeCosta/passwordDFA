@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void checkValidity(string password , map <pair<string, char>, string> m);
+void checkAccepted(string password , map <pair<string, char>, string> m);
 
 
 int main()
@@ -75,15 +75,22 @@ int main()
     cout << "Enter a passwork: \n";
     cin >> password;
 
-    checkValidity(password, justAMap);
+    for(int i = 0; i < password.length();i++)
+    {
+        if(password[i] != 'a' && password[i] != 'b' && password[i] != '0' && password[i] !='1')
+        {
+            exit(0);
+        }
+    }
 
 
+    checkAccepted(password, justAMap);
     
 
     return 0;
 }
 
-void checkValidity(string password, map <pair<string, char>, string> m)
+void checkAccepted(string password, map <pair<string, char>, string> m)
 {
 
     string currstate = "Q0";   //always start at Q0 but will update after every itteration
@@ -91,12 +98,11 @@ void checkValidity(string password, map <pair<string, char>, string> m)
     string finalState1 = "Q3";
     string finalState2 = "Q4";
 
-    map <pair<string, char>, string>:: iterator it;
-
+    cout << currstate << "-> ";
     for(int j = 0; j < password.length(); j++)
     {
         nextstate = m[make_pair(currstate,password[j])];
-        cout << currstate << "-> " << password[j] << " -> " << nextstate <<"\n";
+        cout << password[j] << " -> " << nextstate <<"-> ";
         currstate = nextstate;
  
     }
