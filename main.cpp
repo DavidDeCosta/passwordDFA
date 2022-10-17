@@ -73,7 +73,7 @@ int main()
 
 
 
-    while(password != "Ctrl^ C")
+    while(true)
     {
     cout << "Enter a password (Ctrl^C to end): \n";
     cin >> password;
