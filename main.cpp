@@ -72,7 +72,10 @@ int main()
     justAMap[{"Q9", '1'}] = "Q9";
 
 
-    cout << "Enter a passwork: \n";
+
+    while(password != "Ctrl^ C")
+    {
+    cout << "Enter a password (Ctrl^C to end): \n";
     cin >> password;
 
     for(int i = 0; i < password.length();i++)
@@ -85,7 +88,7 @@ int main()
 
 
     checkAccepted(password, justAMap);
-    
+    }
 
     return 0;
 }
@@ -98,22 +101,25 @@ void checkAccepted(string password, map <pair<string, char>, string> m)
     string finalState1 = "Q3";
     string finalState2 = "Q4";
 
-    cout << currstate << "-> ";
+    cout <<"[" + currstate + "]" << "- ";
     for(int j = 0; j < password.length(); j++)
     {
         nextstate = m[make_pair(currstate,password[j])];
-        cout << password[j] << " -> " << nextstate <<"-> ";
+        cout  <<password[j] << " -> " << + "["+ nextstate + "]";
+        if(j < password.length()-1)
+        {
+            cout << "-> ";
+        }
         currstate = nextstate;
- 
     }
     
     if(currstate == finalState1 || currstate == finalState2)
     {
-        cout << " Accepted ";
+        cout << " : Accepted \n";
     }
     else
     {
-        cout << " Rejected ";
+        cout << " : Rejected \n";
     }   
 
 }
